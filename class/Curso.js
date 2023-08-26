@@ -42,6 +42,46 @@ module.exports = class Curso {
                 resolve(that);
             });
         })
+    }    
+
+
+    static All(){
+        const sql = `SELECT * FROM cursos`;
+        console.log(`Realizando consulta de todos los cursos de la bd`);
+
+        return new Promise((resolve)=> {
+            pool.query(sql,(err,results) => {
+                console.log(`...encontrados ${results.rowCount} cursos inscritos!`);
+
+                for(let curso of results.rows){
+                    console.table(curso);
+                }
+                resolve(results.rows);
+                // const cursos = results.rows.map((cursoRow)=> {
+                //     return cursoRow;
+                // });
+                //console.log(results);
+                //resolve(cursos);
+            })
+        })
+    }
+
+    static eliminar(id_curso){
+        const that = this;
+        const sql = "DELETE FROM cursos WHERE id_curso = $1";
+
+        console.log(`Vamos a eliminar el curso ${that.titulo}`);
+
+        return new Promise((resolve)=> {
+            pool.query(sql,[id_curso], (err,resultRow)=> {
+                if(err){
+                    console.error(err);
+                }
+                console.log(`Eliminado correctamente`);
+                resolve(that);
+            })
+        })
+
     }
 
 }

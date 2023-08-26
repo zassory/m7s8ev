@@ -9,7 +9,14 @@ const Estudiante = require("./class/Estudiante");
 
     //await curso.insertar();
 
-    const estudiante = new Estudiante("Matilda","Bravo",8,2115545);
-    await estudiante.insertar();
+    //const estudiante = new Estudiante("Matilda","Bravo",8,2115545);
+    //await estudiante.insertar();
+    
+    //Estudiante.Find(12);
+
+    //Curso.All();
+
+    //Estudiante.actualizar('Seiya',11);
+    Curso.eliminar(5);
 
 })()
